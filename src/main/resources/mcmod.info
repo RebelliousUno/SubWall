@@ -1,0 +1,12 @@
+[{
+  "modid": "SubWall",
+  "name": "Sub Wall",
+  "description": "Mod to make a subwall",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "logoFile": "assets/SubWall/textures/logo.png",
+  "url": "minecraftforge.net/",
+  "updateJSON": "minecraftforge.net/versions.json",
+  "authorList": ["RebelliousUno"],
+  "credits": "I'd like to thank my mother and father."
+}]
