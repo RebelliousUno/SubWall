@@ -1,0 +1,10 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "subwall:sub_wall_piece"
+  },
+  "variants": {
+    "normal": [{}],
+    "inventory": [{}]
+  }
+}

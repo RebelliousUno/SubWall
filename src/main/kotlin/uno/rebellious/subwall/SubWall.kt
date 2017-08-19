@@ -4,10 +4,13 @@ import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.item.ItemStack
 import net.minecraftforge.fluids.FluidRegistry
 import net.minecraftforge.fml.common.Mod
+import net.minecraftforge.fml.common.Mod.EventHandler
 import net.minecraftforge.fml.common.SidedProxy
+import net.minecraftforge.fml.common.event.FMLInitializationEvent
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent
 import org.apache.logging.log4j.Logger
+import uno.rebellious.subwall.proxy.CommonProxy
 import uno.rebellious.subwall.item.ModItems
 
 
@@ -23,11 +26,7 @@ class SubWall {
     companion object {
         const val MODID: String = "subwall"
         const val MODNAME: String = "SubWall"
-        const val VERSION: String = "1.12-0.0.7.0"
-
-        init {
-            FluidRegistry.enableUniversalBucket()
-        }
+        const val VERSION: String = "1.12-0.0.1.0"
 
         @Mod.Instance
         lateinit var instance: SubWall
@@ -37,21 +36,28 @@ class SubWall {
 
         lateinit var logger: Logger
 
-        val tabSubWall: CreativeTabs = object: CreativeTabs("SubWall") {
+        val tabSubWall: CreativeTabs = object : CreativeTabs("SubWall") {
             override fun getTabIconItem(): ItemStack {
                 return ItemStack(ModItems.sub_wall_piece)
             }
         }
     }
 
-    @Mod.EventHandler
+
+    @EventHandler
     fun preInit(event: FMLPreInitializationEvent) {
         logger = event.modLog
         proxy.preInit(event)
     }
 
-    @Mod.EventHandler
+    @EventHandler
+    fun init(event: FMLInitializationEvent) {
+        proxy.init(event)
+    }
+
+    @EventHandler
     fun postInit(event: FMLPostInitializationEvent) {
         proxy.postInit(event)
     }
 }
+
