@@ -14,6 +14,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 import uno.rebellious.subwall.Config
 import uno.rebellious.subwall.block.BlockSubWallPiece
 import uno.rebellious.subwall.block.ModBlocks
+import uno.rebellious.subwall.item.ModItems
 
 
 @Mod.EventBusSubscriber
@@ -21,15 +22,17 @@ open class CommonProxy {
     companion object {
         var config: Configuration? = null
 
+        val blocks = ModBlocks
+        val itesm = ModItems
+
         @SubscribeEvent
         fun registerBlocks(event: RegistryEvent.Register<Block>) {
-            event.registry.register(BlockSubWallPiece())
+            event.registry.registerAll(blocks.sub_wall_piece)
         }
 
         @SubscribeEvent
         fun registerItems(event: RegistryEvent.Register<Item>) {
-            event.registry.register(ItemBlock(ModBlocks.sub_wall_piece)
-                    .setRegistryName(ModBlocks.sub_wall_piece!!.registryName))
+            event.registry.registerAll(Item.getItemFromBlock(blocks.sub_wall_piece))
         }
 
     }

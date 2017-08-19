@@ -2,7 +2,8 @@ buildscript {
     ext.kotlin_version = '1.1.4-2'
     repositories {
         jcenter()
-        maven { url = "http://files.minecraftforge.net/maven" }
+        maven { url = "http://files.minecraftforge.net/maven"
+        }
     }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
@@ -35,6 +36,12 @@ minecraft {
     mappings = "snapshot_20170624"
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 }
+repositories {
+    jcenter()
+    maven {
+        url "http://maven.shadowfacts.net/"
+    }
+}
 
 dependencies {
     // you may put jars on which you depend on in ./libs
@@ -58,7 +65,9 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
+    compile group: "net.shadowfacts", name: "Forgelin", version: "1.5.1"
 }
+
 
 compileKotlin {
     kotlinOptions.jvmTarget = "1.8"

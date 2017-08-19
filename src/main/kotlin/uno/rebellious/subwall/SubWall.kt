@@ -20,44 +20,44 @@ import uno.rebellious.subwall.item.ModItems
         version = SubWall.VERSION,
         acceptedMinecraftVersions = "[1.12, 1.13)",
         useMetadata = true,
-        dependencies = ""
+        dependencies = "",
+        modLanguageAdapter = "net.shadowfacts.forgelin.KotlinAdapter"
 )
-class SubWall {
-    companion object {
-        const val MODID: String = "subwall"
-        const val MODNAME: String = "SubWall"
-        const val VERSION: String = "1.12-0.0.1.0"
-
-        @Mod.Instance
-        lateinit var instance: SubWall
-
-        @SidedProxy(clientSide = "uno.rebellious.subwall.proxy.ClientProxy", serverSide = "uno.rebellious.subwall.proxy.ServerProxy")
-        lateinit var proxy: CommonProxy
-
-        lateinit var logger: Logger
-
-        val tabSubWall: CreativeTabs = object : CreativeTabs("SubWall") {
-            override fun getTabIconItem(): ItemStack {
-                return ItemStack(ModItems.sub_wall_piece)
-            }
-        }
-    }
-
+object SubWall {
 
     @EventHandler
     fun preInit(event: FMLPreInitializationEvent) {
         logger = event.modLog
-        proxy.preInit(event)
+        proxy!!.preInit(event)
     }
 
     @EventHandler
     fun init(event: FMLInitializationEvent) {
-        proxy.init(event)
+        proxy!!.init(event)
     }
 
     @EventHandler
     fun postInit(event: FMLPostInitializationEvent) {
-        proxy.postInit(event)
+        proxy!!.postInit(event)
+    }
+
+    const val MODID: String = "subwall"
+    const val MODNAME: String = "SubWall"
+    const val VERSION: String = "1.12-0.0.1.0"
+
+    @Mod.Instance
+    var instance: SubWall? = null
+
+    @SidedProxy(clientSide = "uno.rebellious.subwall.proxy.ClientProxy", serverSide = "uno.rebellious.subwall.proxy.ServerProxy")
+    var proxy: CommonProxy? = null
+
+    var logger: Logger? = null
+
+    val tabSubWall: CreativeTabs = object : CreativeTabs("SubWall") {
+        override fun getTabIconItem(): ItemStack {
+            return ItemStack(ModItems.sub_wall_piece)
+        }
     }
 }
+
 
